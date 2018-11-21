@@ -41,4 +41,12 @@ function dateWithMileage (dates, mileages) {
     return dateAndMileage
 }
 
+var daysBetweenD = function(fromDate, toDate) {
+    fDate = new Date(fromDate);
+    tDate = new Date(toDate);
+
+    return Math.floor((Date.UTC(tDate.getFullYear(), tDate.getMonth(), tDate.getDate()) - Date.UTC(fDate.getFullYear(), fDate.getMonth(), fDate.getDate()) ) /(1000 * 60 * 60 * 24));
+}
+
+
 
