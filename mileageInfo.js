@@ -1,3 +1,4 @@
+
 function generateMileageInfo(history) {
 
     //create obj with mileages for given dates
@@ -46,10 +47,10 @@ function generateMileageInfo(history) {
 
     }
 
-    //get average mileage for given year
-    function getPredictionForYear (mileagesYears, Year) {
-        var oneYearBefore = Year - 1 //2018
-        var twoYearsBefore = Year - 2 //2017
+    //get mileage prediction for given year
+    function getPredictionForYear(mileagesYears, year) {
+        var oneYearBefore = year - 1
+        var twoYearsBefore = year - 2
 
         var mForOneYB = mileagesYears[oneYearBefore]
         var mForTwoYB = mileagesYears[twoYearsBefore]
@@ -156,7 +157,7 @@ function generateMileageInfo(history) {
             var minMileage = getMinMileage(obj)
             var maxMileage = getMaxMileage(obj)
 
-            var FDate = getFDate(mileagesDates, minMileage) 
+            var FDate = getFDate(mileagesDates, minMileage)
             var TDate = getTDate(mileagesDates, maxMileage)
 
             var daysBDates = getDaysBetween(FDate, TDate)
@@ -165,22 +166,28 @@ function generateMileageInfo(history) {
             var avrMPerDay = avrMPerDay(daysBDates, diffMileage)
 
             var AverageMileage = getAverageMileage(avrMPerDay, days)
-            return AverageMileage
+            
+            return 'Average mileage for ' + days + ' is: ' + AverageMileage
 
         },
 
         prediction: function (obj, year) {
 
+            var mileagesYears = getYearsMileages(obj)
+            var predictionMForYear = getPredictionForYear(mileagesYears, year)
 
+            return 'Prediction for year ' + year + ' is: ' + predictionMForYear
 
         }
 
     }
 
     return {
+
         average: mileageInfo.average(history, 365),
         predictions: mileageInfo.prediction(history, 2019),
-      };
+
+    };
 
 
 }
