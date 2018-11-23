@@ -1,4 +1,6 @@
 
+var history = require('./history');
+
 function generateMileageInfo(history) {
 
     //create obj with mileages for given dates
@@ -163,11 +165,11 @@ function generateMileageInfo(history) {
             var daysBDates = getDaysBetween(FDate, TDate)
             var diffMileage = mileageDiff(maxMileage, minMileage)
 
-            var avrMPerDay = avrMPerDay(daysBDates, diffMileage)
+            var avrMPDay = avrMPerDay(daysBDates, diffMileage)
 
-            var AverageMileage = getAverageMileage(avrMPerDay, days)
-            
-            return 'Average mileage for ' + days + ' is: ' + AverageMileage
+            var AverageMileage = getAverageMileage(avrMPDay, days)
+
+            console.log('Average mileage (based on data from previous years) for ' + days + ' days is: ' + AverageMileage)
 
         },
 
@@ -176,7 +178,7 @@ function generateMileageInfo(history) {
             var mileagesYears = getYearsMileages(obj)
             var predictionMForYear = getPredictionForYear(mileagesYears, year)
 
-            return 'Prediction for year ' + year + ' is: ' + predictionMForYear
+            console.log('Mileage prediction for year ' + year + ' is: ' + predictionMForYear)
 
         }
 
@@ -191,4 +193,6 @@ function generateMileageInfo(history) {
 
 
 }
+
+generateMileageInfo(history)
 
